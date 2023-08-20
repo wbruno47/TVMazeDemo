@@ -35,11 +35,16 @@ const getQueryResults = async () => {
 const displayResults = (shows) => {
     console.log(shows);
     for (let result of shows) {
-        const container = document.createElement('div');
+        var myLazyLoad = new LazyLoad({
+            container: document.createElement('div')
+        });
+        console.log(myLazyLoad);
+
+        //const container = document.createElement('div');
         const containerLeft = document.createElement('div');
         const containerRight = document.createElement('div');
 
-        container.classList.add("resultItem");
+        myLazyLoad._settings.container.classList.add("resultItem");
         containerLeft.classList.add("resultLeft");
         containerRight.classList.add("resultRight");
 
@@ -61,9 +66,9 @@ const displayResults = (shows) => {
         containerLeft.appendChild(img);
         //containerRight.appendChild(summary);
 
-        container.appendChild(containerLeft);
-        container.appendChild(containerRight);
-        resultContainer.appendChild(container);
+        myLazyLoad._settings.container.appendChild(containerLeft);
+        myLazyLoad._settings.container.appendChild(containerRight);
+        resultContainer.appendChild(myLazyLoad._settings.container);
     }
 }
 
